@@ -42,18 +42,17 @@ func (s *Server) GraphDeviceHandler(w http.ResponseWriter, r *http.Request) {
 				Right:  10,
 				Bottom: 10,
 			},
-			FontSize: 24,
 		},
 		Width:  1200,
 		Height: 800,
-		DPI:    300,
+		DPI:    200,
 		Background: chart.Style{
 			Hidden: false,
 			Padding: chart.Box{
-				Top:    20,
-				Left:   20,
-				Right:  20,
-				Bottom: 20,
+				Top:    10,
+				Left:   10,
+				Right:  10,
+				Bottom: 10,
 			},
 		},
 
