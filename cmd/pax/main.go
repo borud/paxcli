@@ -38,6 +38,6 @@ func main() {
 	}
 
 	for m := range spanListen.Measurements() {
-		fmt.Printf("%s device='%s' bluetooth=%d wifi=%d", m.Timestamp, m.DeviceID, m.BluetoothDeviceCount, m.WIFIDeviceCount)
+		fmt.Printf("%s device='%s' bluetooth=%d wifi=%d\n", m.Timestamp.Format("2006-01-02 15:04:05"), m.DeviceID, m.BluetoothDeviceCount, m.WIFIDeviceCount)
 	}
 }

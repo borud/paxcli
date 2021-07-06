@@ -96,12 +96,12 @@ func (s *SpanListener) readDataStream(ds apitools.DataStream) {
 			log.Fatalf("unable to unmarshal protobuffer: %v", err)
 		}
 
-		timeNano, err := strconv.ParseInt(*msg.Received, 10, 64)
+		timeMS, err := strconv.ParseInt(*msg.Received, 10, 64)
 		if err != nil {
 			log.Printf("error parsing '%s' as timestamp: %v", *msg.Received, err)
 			continue
 		}
-		timeStamp := time.Unix(0, timeNano)
+		timeStamp := time.Unix(0, timeMS*int64(time.Millisecond))
 
 		s.measurementCh <- model.Measurement{
 			DeviceID:             *msg.Device.DeviceId,
