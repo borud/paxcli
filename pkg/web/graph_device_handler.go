@@ -69,12 +69,6 @@ func (s *Server) GraphDeviceHandler(w http.ResponseWriter, r *http.Request) {
 				XValues: times,
 				YValues: wifiCounts,
 			},
-			// Core temp
-			chart.TimeSeries{
-				Name:    "Core temp",
-				XValues: times,
-				YValues: coreTemps,
-			},
 		},
 	}
 
