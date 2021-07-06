@@ -8,4 +8,7 @@ type Measurement struct {
 	Timestamp            time.Time
 	BluetoothDeviceCount int
 	WIFIDeviceCount      int
+	CoreTemperature      float32
+	SequenceNumber       int
+	SecondsUptime        int
 }

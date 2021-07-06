@@ -57,6 +57,6 @@ func main() {
 		if !opt.SkipWebServer {
 			ringStore.AddMeasurement(m)
 		}
-		fmt.Printf("%s device='%s' bluetooth=%d wifi=%d\n", m.Timestamp.Format("2006-01-02 15:04:05"), m.DeviceID, m.BluetoothDeviceCount, m.WIFIDeviceCount)
+		fmt.Printf("%s device='%s' bluetooth=%d wifi=%d core temperatur: %.2f, sequence number: %d, uptime: %d seconds\n", m.Timestamp.Format("2006-01-02 15:04:05"), m.DeviceID, m.BluetoothDeviceCount, m.WIFIDeviceCount, m.CoreTemperature, m.SequenceNumber, m.SecondsUptime)
 	}
 }
