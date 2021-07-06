@@ -108,9 +108,9 @@ func (s *SpanListener) readDataStream(ds apitools.DataStream) {
 			Timestamp:            timeStamp,
 			BluetoothDeviceCount: int(pb.BluetoothDeviceCount),
 			WIFIDeviceCount:      int(pb.WifiDeviceCount),
-			CoreTemperature:	  float32(pb.CoreTemperature),
-			SequenceNumber: 	  int(pb.SequenceNumber),
-			SecondsUptime:		  int(pb.SecondsUptime),
+			CoreTemperature:      float32(pb.CoreTemperature),
+			SequenceNumber:       int(pb.SequenceNumber),
+			SecondsUptime:        int(pb.SecondsUptime),
 		}
 
 		if s.ctx.Err() == context.Canceled {

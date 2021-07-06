@@ -1,7 +1,6 @@
 package web
 
 import (
-	"log"
 	"net/http"
 	"time"
 
@@ -26,11 +25,13 @@ func (s *Server) GraphDeviceHandler(w http.ResponseWriter, r *http.Request) {
 	times := []time.Time{}
 	wifiCounts := []float64{}
 	btCounts := []float64{}
+	coreTemps := []float64{}
 
 	for _, m := range values {
 		times = append(times, m.Timestamp)
 		wifiCounts = append(wifiCounts, float64(m.WIFIDeviceCount))
 		btCounts = append(btCounts, float64(m.BluetoothDeviceCount))
+		coreTemps = append(coreTemps, float64(m.CoreTemperature))
 	}
 
 	graph := chart.Chart{
@@ -45,7 +46,6 @@ func (s *Server) GraphDeviceHandler(w http.ResponseWriter, r *http.Request) {
 		},
 		Width:  1200,
 		Height: 800,
-		DPI:    200,
 		Background: chart.Style{
 			Hidden: false,
 			Padding: chart.Box{
@@ -59,20 +59,28 @@ func (s *Server) GraphDeviceHandler(w http.ResponseWriter, r *http.Request) {
 		Series: []chart.Series{
 			// Bluetooth series
 			chart.TimeSeries{
-				Name:    deviceID,
+				Name:    "bluetooth",
 				XValues: times,
 				YValues: btCounts,
 			},
 			// Wifi series
 			chart.TimeSeries{
-				Name:    deviceID,
+				Name:    "wifi",
 				XValues: times,
 				YValues: wifiCounts,
+			},
+			// Core temp
+			chart.TimeSeries{
+				Name:    "Core temp",
+				XValues: times,
+				YValues: coreTemps,
 			},
 		},
 	}
 
-	log.Printf("Graph is: %+v", graph)
+	graph.Elements = []chart.Renderable{
+		chart.Legend(&graph),
+	}
 
 	w.Header().Set("Content-Type", "image/png")
 	graph.Render(chart.PNG, w)

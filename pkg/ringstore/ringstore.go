@@ -29,8 +29,7 @@ func (v *RingStore) AddMeasurement(m model.Measurement) {
 	}
 
 	r.Value = m
-	r = r.Next()
-	v.devices[m.DeviceID] = r
+	v.devices[m.DeviceID] = r.Next()
 }
 
 // ListDevices lists the devices we have seen
